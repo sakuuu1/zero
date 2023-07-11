@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="joke">Awesome joke is loadingg.........</div>
+    <button id="btn">Click Here</button>
+</body>
+<script>
+    var one=document.querySelector("#joke")
+    var two=document.querySelector("#btn")
+    const generateJokes=()=>{
+        const setHeader={
+            headers:{
+                Accept:"Application/json"
+            }
+        }
+        fetch('https://icanhazdadjoke.com/',setHeader).then((res)=>res.json() )
+        .then((data)=>{
+            one.innerHTML=data.joke;
+        }).catch((error)=>{
+            console.log(error)
+        })
+    }
+    two.addEventListener('click',generateJokes);
+    generateJokes();
+</script>
+</html>
